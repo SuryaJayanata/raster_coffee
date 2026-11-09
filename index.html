@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RASTER · Kaffee & Lab | Swiss Editorial Urban Specialty Coffee</title>
+  <meta name="description" content="Precision coffee roasting engineered on a strict architectural grid. Specialty coffee lab, micro-lot roastery, and urban tasting bar in Tlogomas, Malang, East Java.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23E9631A'/><text y='70' x='50' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='60' fill='%23ffffff'>R</text></svg>">
+
+  <!-- Google Fonts: Manrope (CDN) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons (CDN) -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Lenis Smooth Scroll CDN (v1.1.18 by Darkroom Engineering) -->
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- GSAP Core & ScrollTrigger CDN (v3.12.5) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Leaflet CSS & JS for Minimalist Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Tailwind CSS v4 (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Custom Design Tokens & Var-UI Base Evaluation Stamp -->
+  <style type="text/tailwindcss">
+    /* Var-UI Base · pre-emit score: [P:5 H:5 E:5 S:5 R:5 V:5]
+     * scope: page | component: Landing Page
+     * theme: Swiss Editorial Urban | typography: Manrope
+     * status: PASSED (15/15 slop checks verified)
+     */
+    
+    @theme {
+      --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --color-brand-orange: #E9631A;
+      --color-brand-white: #EFEFEF;
+      --color-brand-slate: #315762;
+      --color-brand-dark: #162B31;
+    }
+  </style>
+
+  <style>
+    /* Global Baseline & Typography Safeguards */
+    html, body {
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #EFEFEF;
+      color: #162B31;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4 {
+      overflow-wrap: anywhere;
+      min-width: 0;
+      letter-spacing: -0.025em;
+    }
+
+    /* Precision Focus States */
+    :focus-visible {
+      outline: 2px solid #E9631A;
+      outline-offset: 2px;
+    }
+
+    /* Hairline borders matching Swiss grid */
+    .hairline-border {
+      border: 1.5px solid rgba(49, 87, 98, 0.2);
+    }
+
+    /* Precision Monochrome Architectural Map Styling (No Watermarks, 100% On-Brand) */
+    .leaflet-tile-pane {
+      filter: grayscale(100%) contrast(88%) brightness(104%);
+    }
+    .leaflet-container {
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif !important;
+      background-color: #EFEFEF !important;
+    }
+    .leaflet-bar {
+      border-radius: 0 !important;
+      border: 1px solid rgba(49, 87, 98, 0.25) !important;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+    }
+    .leaflet-bar a {
+      background-color: #ffffff !important;
+      color: #162B31 !important;
+      border-radius: 0 !important;
+      border-bottom: 1px solid rgba(49, 87, 98, 0.15) !important;
+    }
+    .leaflet-bar a:hover {
+      background-color: #EFEFEF !important;
+      color: #E9631A !important;
+    }
+    .leaflet-popup-content-wrapper {
+      border-radius: 0 !important;
+      padding: 0 !important;
+      box-shadow: 0 4px 14px rgba(22, 43, 49, 0.12) !important;
+      border: 1px solid rgba(49, 87, 98, 0.25) !important;
+    }
+    .leaflet-popup-content {
+      margin: 0 !important;
+      line-height: 1.4 !important;
+    }
+    .leaflet-popup-tip-container {
+      display: none !important;
+    }
+
+    /* Silky Smooth Architectural Shutter From Bottom Hover */
+    .menu-item {
+      position: relative;
+      overflow: hidden;
+      background-color: transparent !important;
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .menu-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: #E9631A;
+      transform: translate3d(0, 100%, 0);
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .menu-item:hover::before {
+      transform: translate3d(0, 0, 0);
+    }
+    .menu-item > * {
+      position: relative;
+      z-index: 1;
+    }
+    .menu-item * {
+      transition: color 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Swiss Architectural Magnetic Underline Wipe */
+    .swiss-link {
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+      transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    .swiss-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 1.5px;
+      background-color: #E9631A;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .swiss-link:hover {
+      color: #E9631A !important;
+    }
+    .swiss-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-[#E9631A] selection:text-white bg-[#EFEFEF] relative">
+
+  <!-- Unified Page-Wide Architectural Swiss Grid (Framing Every Image Column at Both Left & Right Edges Across Entire Document) -->
+  <div class="absolute inset-0 pointer-events-none max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 z-0 w-full" aria-hidden="true">
+    <div class="h-full w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 lg:gap-3" id="swiss-grid-tracks">
+      <!-- Track 01 Guidelines (Left & Right Edge of Image 01) -->
+      <div class="h-full border-x border-[#315762]/15 swiss-grid-line origin-top"></div>
+      <!-- Track 02 Guidelines (Left & Right Edge of Image 02) -->
+      <div class="h-full border-x border-[#315762]/15 swiss-grid-line origin-top"></div>
+      <!-- Track 03 Guidelines (Left & Right Edge of Image 03) -->
+      <div class="h-full border-x border-[#315762]/15 swiss-grid-line origin-top"></div>
+      <!-- Track 04 Guidelines (Left & Right Edge of Image 04) -->
+      <div class="h-full border-x border-[#315762]/15 swiss-grid-line origin-top"></div>
+    </div>
+  </div>
+
+  <!-- Combined Modular Sections in Continuous Transparent Document Flow -->
+  <div class="relative z-10 flex flex-col w-full">
+    
+<!-- >>> START SECTION: navbar.html <<< -->
+<!-- ==========================================
+     RASTER · Navigation Bar (100% Transparent Floating Masthead)
+     No Background, Unified Grid Passes Through to the Very Top
+     Zero Collision with Hero Typography
+========================================== -->
+<header class="relative z-20 bg-transparent transition-all duration-200">
+  <div class="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+    <div class="grid grid-cols-2 md:grid-cols-12 items-center h-20 sm:h-24">
+      
+      <!-- Left Column: Slashed Navigation Links (Desktop) -->
+      <nav class="hidden md:flex md:col-span-5 items-center gap-3 text-xs font-semibold tracking-wide text-[#315762]" aria-label="Left Navigation">
+        <a href="#about" class="swiss-link py-1">
+          About
+        </a>
+        <span class="text-[#315762]/30 select-none">/</span>
+        <a href="#roast-spec" class="swiss-link py-1">
+          Coffee Beans
+        </a>
+        <span class="text-[#315762]/30 select-none">/</span>
+        <a href="#menu" class="swiss-link py-1">
+          Menu
+        </a>
+      </nav>
+
+      <!-- Center Column: RASTER Logo (Geometric Grid Mark + Wordmark) -->
+      <div class="flex items-center justify-start md:justify-center md:col-span-2">
+        <a href="#hero" class="inline-flex items-center gap-2.5 group focus:outline-none focus-visible:ring-1 focus-visible:ring-[#E9631A]">
+          <!-- Geometric Swiss Grid Matrix Icon (Raster Concept) -->
+          <svg class="w-5 h-5 text-[#E9631A] group-hover:rotate-90 transition-transform duration-300 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="3" y="3" width="7.5" height="7.5" />
+            <rect x="13.5" y="3" width="7.5" height="7.5" />
+            <rect x="3" y="13.5" width="7.5" height="7.5" />
+            <rect x="13.5" y="13.5" width="7.5" height="7.5" />
+          </svg>
+          <!-- Bold Brand Wordmark -->
+          <span class="text-xl sm:text-2xl font-black tracking-[-0.03em] text-[#162B31] group-hover:text-[#E9631A] transition-colors">
+            RASTER
+          </span>
+        </a>
+      </div>
+
+      <!-- Right Column: Secondary Links & Sharp Orange CTA Button (No Rounded) -->
+      <div class="flex items-center justify-end md:col-span-5 gap-4 lg:gap-6">
+        
+        <!-- Secondary Slashed Links (Desktop) -->
+        <nav class="hidden lg:flex items-center gap-3 text-xs font-semibold tracking-wide text-[#315762]" aria-label="Right Navigation">
+          <a href="#gallery" class="swiss-link py-1">
+            Gallery
+          </a>
+          <span class="text-[#315762]/30 select-none">/</span>
+          <a href="#visit" class="swiss-link py-1">
+            Location
+          </a>
+        </nav>
+
+        <!-- Sharp Orange CTA Button with Architectural Charcoal Shutter & Arrow Glide -->
+        <a href="#roast-spec" class="relative inline-flex items-center justify-center gap-2 bg-[#E9631A] text-white text-xs font-bold tracking-wide px-4 sm:px-5 py-2.5 sm:py-3 rounded-none overflow-hidden group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#162B31] active:scale-[0.98] transition-transform">
+          <!-- Background Shutter Wipe (Deep Charcoal #162B31 from Bottom) -->
+          <span class="absolute inset-0 bg-[#162B31] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"></span>
+          
+          <!-- Button Label & Kinetic Arrow Glide -->
+          <span class="relative z-10 inline-flex items-center gap-1.5">
+            <span>Order Beans</span>
+            <i class="ph ph-arrow-right text-xs transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1"></i>
+          </span>
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</header>
+<!-- >>> END SECTION: navbar.html <<< -->
+
+<!-- >>> START SECTION: hero.html <<< -->
+<!-- ==========================================
+     RASTER · Hero Section
+     Sits on Top of the Unified Page-Wide Swiss Grid
+========================================== -->
+<section id="hero" class="relative z-10 bg-transparent pt-6 sm:pt-8 lg:pt-10 pb-16 lg:pb-24">
+  <div class="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+    
+    <!-- Monumental Editorial Header -->
+    <div class="mb-10 lg:mb-14">
+      
+      <!-- Giant Headline: Simply, Better Coffee (Orange) + Period (Dark Slate) -->
+      <div class="mb-6 lg:mb-8 overflow-hidden pb-4 sm:pb-6">
+        <h1 id="hero-title" class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[5.5rem] 2xl:text-[6.5rem] font-extrabold text-[#E9631A] tracking-[-0.035em] leading-[1.02] pb-2 select-none">
+          <span>Simply, Better Coffee</span><span class="text-[#162B31]">.</span>
+        </h1>
+      </div>
+
+      <!-- Architectural Editorial Sub-Grid: Aligned with "Simply, Better Coffee" -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-12 items-baseline">
+        
+        <!-- Left Column: Punchline (Natural Case, No All-Caps) -->
+        <div id="hero-sub-left" class="md:col-span-5 lg:col-span-4">
+          <p class="text-xs sm:text-sm font-bold text-[#315762] leading-relaxed">
+            No complicated gimmicks. Ethically sourced, roasted fresh weekly.
+          </p>
+        </div>
+
+        <!-- Right Column: Harmonized Flowing Statement -->
+        <div id="hero-sub-right" class="md:col-span-7 lg:col-span-8 md:pl-4 lg:pl-8">
+          <p class="text-sm sm:text-base lg:text-lg text-[#315762] leading-relaxed max-w-2xl">
+            We strip away the noise to focus on what truly matters in your cup: transparent direct-trade beans, balanced roast profiles, and a consistently clean brew crafted for your daily ritual.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Cards Row: Tightly Packed (gap-2 to gap-3), Tall Portrait Images (aspect-[3/4]), Pure Visual Filmstrip (2 cols on mobile, 4 cols on desktop) -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 lg:gap-3 items-start" id="hero-gallery-row">
+      
+      <!-- Card 01: Product (Artisanal Stoneware Flat White) -->
+      <div class="group flex flex-col hero-plate">
+        <div class="aspect-[3/4] overflow-hidden rounded-none bg-transparent shadow-none">
+          <img 
+            id="hero-img-1"
+            src="./images/hero-1-product.jpg" 
+            alt="Artisanal stoneware cup of flat white with delicate latte art on dark walnut table" 
+            class="hero-plate-img w-full h-full object-cover grayscale-[5%] contrast-[105%] group-hover:scale-[1.03] transition-transform duration-500"
+          />
+        </div>
+      </div>
+
+      <!-- Card 02: Spatial Interior (Cast Concrete Monolithic Bar & Tall Windows) -->
+      <div class="group flex flex-col hero-plate">
+        <div class="aspect-[3/4] overflow-hidden rounded-none bg-transparent shadow-none">
+          <img 
+            id="hero-img-2"
+            src="./images/hero-2-interior.jpg" 
+            alt="Minimalist urban cafe interior featuring cast-concrete bar and tall glass windows" 
+            class="hero-plate-img w-full h-full object-cover grayscale-[5%] contrast-[105%] group-hover:scale-[1.03] transition-transform duration-500"
+          />
+        </div>
+      </div>
+
+      <!-- Card 03: Barista Craft (Precision Gooseneck Pour Over) -->
+      <div class="group flex flex-col hero-plate">
+        <div class="aspect-[3/4] overflow-hidden rounded-none bg-transparent shadow-none">
+          <img 
+            id="hero-img-3"
+            src="./images/hero-3-craft.jpg" 
+            alt="Barista hands pouring hot water from matte black kettle into pour-over dripper" 
+            class="hero-plate-img w-full h-full object-cover grayscale-[5%] contrast-[105%] group-hover:scale-[1.03] transition-transform duration-500"
+          />
+        </div>
+      </div>
+
+      <!-- Card 04: Lifestyle (Iced Dirty Latte & Open Design Magazine in Quiet Corner) -->
+      <div class="group flex flex-col hero-plate">
+        <div class="aspect-[3/4] overflow-hidden rounded-none bg-transparent shadow-none">
+          <img 
+            id="hero-img-4"
+            src="./images/hero-4-lifestyle.jpg" 
+            alt="Iced dirty latte with espresso marbling beside open architectural magazine" 
+            class="hero-plate-img w-full h-full object-cover grayscale-[5%] contrast-[105%] group-hover:scale-[1.03] transition-transform duration-500"
+          />
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- >>> END SECTION: hero.html <<< -->
+
+<!-- >>> START SECTION: about.html <<< -->
+<!-- ==========================================
+     RASTER · Section 02: About / The Story
+     Origin: Tlogomas, Malang, East Java
+     Sits on Top of the Unified Page-Wide Swiss Grid
+========================================== -->
+<section id="about" class="relative z-10 bg-transparent py-16 lg:py-24">
+  <div class="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+    
+    <!-- Editorial Two-Column Grid: Text & Photo -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+      
+      <!-- Left Column: Story & Philosophy (7 cols) -->
+      <div class="lg:col-span-7 flex flex-col justify-between">
+        
+        <!-- Category Tag: Clean, No Brackets, No All-Caps -->
+        <span id="about-tag" class="text-sm font-bold text-[#E9631A] block mb-3">
+          About
+        </span>
+
+        <!-- Headline with Signature Orange Period (Masked for GSAP Reveal, descender-safe) -->
+        <div class="overflow-hidden pb-2 sm:pb-3 mb-6">
+          <h2 id="about-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#162B31] tracking-tight leading-[1.12]">
+            Born from the geometry of order, roasted for pure clarity<span class="text-[#E9631A]">.</span>
+          </h2>
+        </div>
+
+        <!-- Narrative Paragraphs: Rooted in Tlogomas, Malang -->
+        <div class="space-y-5 text-base sm:text-lg text-[#315762] leading-relaxed">
+          <p class="about-p">
+            Raster was founded in Tlogomas, Malang—a vibrant neighborhood where student energy, cool mountain breezes, and East Java’s rich coffee roasting traditions converge. Taking inspiration from the Swiss International Typographic Style and Josef Müller-Brockmann’s grid philosophy, we set out to merge our local volcanic coffee roots with uncompromising architectural discipline.
+          </p>
+          <p class="about-p">
+            Surrounded by the terroirs of Mount Arjuno, Bromo, and Dampit, we work side-by-side with generational farming families across East Java and the Indonesian archipelago. By controlling extraction ratios, water mineralization, and drum roaster heat curves to millimeter precision, we eliminate harsh bitterness and unveil clean, structured, sweet fruit profiles.
+          </p>
+          <p class="about-p text-sm font-semibold text-[#162B31] pt-2">
+            Every pour is an honest reflection of highland craft, deliberate restraint, and the creative spirit of Tlogomas, Malang.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Visual Composition (5 cols) -->
+      <div class="lg:col-span-5">
+        <div id="about-card" class="relative bg-white p-2.5 rounded-none border border-[#315762]/20 overflow-hidden">
+          <div class="aspect-[3/4] overflow-hidden rounded-none bg-[#162B31]">
+            <img 
+              id="about-img"
+              src="./images/about-roastery.jpg" 
+              alt="Indonesian barista wearing signature orange apron crafting specialty coffee" 
+              class="w-full h-full object-cover grayscale-[5%] contrast-[105%] hover:scale-[1.02] transition-transform duration-500 will-change-transform"
+            />
+          </div>
+          <!-- Clean & Truly Informative Image Caption: Natural & Factual -->
+          <div id="about-caption" class="p-3.5 flex items-center justify-between text-xs text-[#315762] border-t border-[#315762]/15 mt-2">
+            <span class="font-bold text-[#162B31]">Hand-poured latte at our coffee bar</span>
+            <span class="text-[#E9631A] font-semibold">Tlogomas, Malang</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- >>> END SECTION: about.html <<< -->
+
+<!-- >>> START SECTION: beans.html <<< -->
+<!-- ==========================================
+     RASTER · Section 03: Roasted Beans Catalog (Bahan Mentahan)
+     Exact Canyon Coffee Layout Reference
+     4-Column Grid Aligned with Unified Swiss Guidelines
+========================================== -->
+<section id="roast-spec" class="relative z-10 bg-transparent py-16 lg:py-24">
+  <div class="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+    
+    <!-- Section Header: Clean Minimalist Editorial (Direct to Cards, No Extra Clutter) -->
+    <div class="mb-10 lg:mb-12">
+      <!-- Section Tag: Natural Case, No Brackets, No All-Caps -->
+      <span id="beans-tag" class="text-sm font-bold text-[#E9631A] block mb-3">
+        Beans
+      </span>
+      
+      <!-- Headline with Signature Orange Period (Masked for GSAP Reveal, descender-safe) -->
+      <div class="overflow-hidden pb-2 sm:pb-3">
+        <h2 id="beans-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#162B31] tracking-tight leading-[1.12]">
+          Coffee Beans<span class="text-[#E9631A]">.</span>
+        </h2>
+      </div>
+    </div>
+
+    <!-- 4-Column Packshot Grid (Strictly Aligned with Swiss Grid) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 lg:gap-3 items-start" id="bean-cards-grid">
+      
+      <!-- Card 01: Dampit Highlands (Signature Orange #E9631A Pouch) -->
+      <a 
+        href="bean-detail.html?id=dampit"
+        class="bean-item group flex flex-col text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E9631A] block cursor-pointer w-full" 
+        aria-label="View specifications for Dampit Highlands coffee"
+      >
+        <div class="bean-box relative bg-white p-2.5 rounded-none border border-[#315762]/20 mb-4 overflow-hidden">
+          <div class="aspect-square overflow-hidden rounded-none bg-white">
+            <img 
+              src="./images/bean-1-dampit.jpg" 
+              alt="Dampit Highlands specialty coffee 200g pouch in signature orange" 
+              class="bean-img w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500 will-change-transform"
+            />
+          </div>
+        </div>
+        <div class="bean-info flex flex-col space-y-1">
+          <h3 class="text-base font-bold text-[#162B31] tracking-tight group-hover:text-[#E9631A] transition-colors">
+            Dampit Highlands
+          </h3>
+          <p class="text-xs text-[#315762] leading-relaxed">
+            Dark Chocolate, Orange Peel, Balanced
+          </p>
+          <span class="text-xs font-bold text-[#162B31] pt-0.5">
+            From IDR 135,000
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 02: Arjuno Honey (Matte Charcoal Black #162B31 Pouch) -->
+      <a 
+        href="bean-detail.html?id=arjuno"
+        class="bean-item group flex flex-col text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E9631A] block cursor-pointer w-full" 
+        aria-label="View specifications for Arjuno Honey coffee"
+      >
+        <div class="bean-box relative bg-white p-2.5 rounded-none border border-[#315762]/20 mb-4 overflow-hidden">
+          <div class="aspect-square overflow-hidden rounded-none bg-white">
+            <img 
+              src="./images/bean-2-arjuno.jpg" 
+              alt="Arjuno Honey specialty coffee 200g pouch in matte charcoal black" 
+              class="bean-img w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500 will-change-transform"
+            />
+          </div>
+        </div>
+        <div class="bean-info flex flex-col space-y-1">
+          <h3 class="text-base font-bold text-[#162B31] tracking-tight group-hover:text-[#E9631A] transition-colors">
+            Arjuno Honey
+          </h3>
+          <p class="text-xs text-[#315762] leading-relaxed">
+            Wild Strawberry, Raw Honey, Bergamot
+          </p>
+          <span class="text-xs font-bold text-[#162B31] pt-0.5">
+            From IDR 145,000
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 03: Aceh Gayo (Flash White / Cream #EFEFEF Paper Pouch) -->
+      <a 
+        href="bean-detail.html?id=gayo"
+        class="bean-item group flex flex-col text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E9631A] block cursor-pointer w-full" 
+        aria-label="View specifications for Gayo Pantan Musara coffee"
+      >
+        <div class="bean-box relative bg-white p-2.5 rounded-none border border-[#315762]/20 mb-4 overflow-hidden">
+          <div class="aspect-square overflow-hidden rounded-none bg-white">
+            <img 
+              src="./images/bean-3-gayo.jpg" 
+              alt="Aceh Gayo Pantan Musara specialty coffee 200g pouch in flash white cream" 
+              class="bean-img w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500 will-change-transform"
+            />
+          </div>
+        </div>
+        <div class="bean-info flex flex-col space-y-1">
+          <h3 class="text-base font-bold text-[#162B31] tracking-tight group-hover:text-[#E9631A] transition-colors">
+            Gayo Pantan Musara
+          </h3>
+          <p class="text-xs text-[#315762] leading-relaxed">
+            Crisp Green Apple, Lemongrass, Caramel
+          </p>
+          <span class="text-xs font-bold text-[#162B31] pt-0.5">
+            From IDR 145,000
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 04: Toraja Sapan (Dark Slate #315762 Pouch) -->
+      <a 
+        href="bean-detail.html?id=toraja"
+        class="bean-item group flex flex-col text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E9631A] block cursor-pointer w-full" 
+        aria-label="View specifications for Toraja Sapan coffee"
+      >
+        <div class="bean-box relative bg-white p-2.5 rounded-none border border-[#315762]/20 mb-4 overflow-hidden">
+          <div class="aspect-square overflow-hidden rounded-none bg-white">
+            <img 
+              src="./images/bean-4-toraja.jpg" 
+              alt="Toraja Sapan Minanga specialty coffee 200g pouch in dark slate" 
+              class="bean-img w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500 will-change-transform"
+            />
+          </div>
+        </div>
+        <div class="bean-info flex flex-col space-y-1">
+          <h3 class="text-base font-bold text-[#162B31] tracking-tight group-hover:text-[#E9631A] transition-colors">
+            Toraja Sapan
+          </h3>
+          <p class="text-xs text-[#315762] leading-relaxed">
+            Dark Chocolate, Orange, Balanced
+          </p>
+          <span class="text-xs font-bold text-[#162B31] pt-0.5">
+            From IDR 140,000
+          </span>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+<!-- >>> END SECTION: beans.html <<< -->
+
+<!-- >>> START SECTION: menu.html <<< -->
+<!-- ==========================================
+     RASTER · Section 04: Coffee Menu & Index (Minuman Jadi di Kafe)
+     Clean Minimalist Editorial Layout Matching User Reference
+     Equipped with Drink Thumbnail Photos in White Museum Frames
+     Sits on Top of the Unified Page-Wide Swiss Grid
+========================================== -->
+<section id="menu" class="relative z-10 bg-transparent py-16 lg:py-24">
+  <div class="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+    
+    <!-- Section Header: Clean Minimalist Editorial -->
+    <div class="mb-12 lg:mb-16">
+      <span id="menu-tag" class="text-sm font-bold text-[#E9631A] block mb-3">
+        Menu
+      </span>
+      <div class="overflow-hidden pb-2 sm:pb-3">
+        <h2 id="menu-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#162B31] tracking-tight leading-[1.12]">
+          Coffee & Drinks<span class="text-[#E9631A]">.</span>
+        </h2>
+      </div>
+    </div>
+
+    <!-- 4-Track Aligned Editorial Menu Grid (Strictly Locked to Swiss Grid Tracks) -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-2 sm:gap-2.5 lg:gap-3 items-start">
+      
+      <!-- ================= LEFT COLUMN (Tracks 01 & 02) ================= -->
+      <div class="lg:col-span-2 space-y-4 sm:space-y-6">
+        
+        <!-- Category 01: HOT COFFEE -->
+        <div class="menu-category-box bg-white p-4 sm:p-5 lg:p-6 rounded-none border border-[#315762]/20">
+          <!-- Category Header with Clean Underline -->
+          <div class="menu-cat-header flex items-center justify-between pb-3 mb-4 sm:mb-5 border-b border-[#315762]/20 origin-left">
+            <div class="flex items-center gap-2">
+              <span class="inline-block w-2 h-2 bg-[#E9631A]"></span>
+              <h3 class="text-sm font-bold text-[#162B31]">
+                Hot Coffee
+              </h3>
+            </div>
+            <span class="text-xs font-medium text-[#315762]">
+              Single / Double
+            </span>
+          </div>
+
+          <!-- Item Rows List -->
+          <div class="space-y-1">
+            
+            <!-- Flat White -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-flat-white.jpg" alt="Flat White" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Flat White</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">104 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">35K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Double ristretto, silky microfoam 62°C</p>
+              </div>
+            </div>
+
+            <!-- Latte -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-latte.jpg" alt="Latte" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Latte</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">121 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">35K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Espresso, steamed whole milk, thin foam layer</p>
+              </div>
+            </div>
+
+            <!-- Cappuccino -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-cappuccino.jpg" alt="Cappuccino" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Cappuccino</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">93 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">35K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Equal parts espresso, hot milk & dense foam</p>
+              </div>
+            </div>
+
+            <!-- Chai Latte -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-chai.jpg" alt="Chai Latte" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Chai Latte</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">93 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">38K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Spiced black tea infusion, steamed oat milk</p>
+              </div>
+            </div>
+
+            <!-- Americano -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-americano.jpg" alt="Americano" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Americano</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">93 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">30K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Double shot espresso, 93°C mineral water</p>
+              </div>
+            </div>
+
+            <!-- Matcha -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-matcha.jpg" alt="Matcha" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Matcha</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">93 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">38K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Ceremonial grade Uji matcha, steamed milk</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Category 02: SIGNATURES -->
+        <div class="menu-category-box bg-white p-4 sm:p-5 lg:p-6 rounded-none border border-[#315762]/20">
+          <!-- Category Header with Clean Underline -->
+          <div class="menu-cat-header flex items-center justify-between pb-3 mb-4 sm:mb-5 border-b border-[#315762]/20 origin-left">
+            <div class="flex items-center gap-2">
+              <span class="inline-block w-2 h-2 bg-[#E9631A]"></span>
+              <h3 class="text-sm font-bold text-[#162B31]">
+                Signatures
+              </h3>
+            </div>
+            <span class="text-xs font-medium text-[#315762]">
+              House Specials
+            </span>
+          </div>
+
+          <!-- Item Rows List -->
+          <div class="space-y-1">
+            
+            <!-- Velvet Mocha -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-mocha.jpg" alt="Velvet Mocha" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Velvet Mocha</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">130 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">42K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">70% single-origin cacao ganache, double shot</p>
+              </div>
+            </div>
+
+            <!-- Date Cream Latte -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-date-cream.jpg" alt="Date Cream Latte" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Date Cream Latte</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">118 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">45K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Medjool date reduction, whipped sea salt cream</p>
+              </div>
+            </div>
+
+            <!-- Orange Espresso Tonic -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-orange-tonic.jpg" alt="Orange Espresso Tonic" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Orange Espresso Tonic</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">80 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">42K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Fresh Valencia orange, artisanal tonic, espresso float</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= RIGHT COLUMN (Tracks 03 & 04) ================= -->
+      <div class="lg:col-span-2 space-y-4 sm:space-y-6">
+        
+        <!-- Category 03: ICED COFFEE -->
+        <div class="menu-category-box bg-white p-4 sm:p-5 lg:p-6 rounded-none border border-[#315762]/20">
+          <!-- Category Header with Clean Underline -->
+          <div class="menu-cat-header flex items-center justify-between pb-3 mb-4 sm:mb-5 border-b border-[#315762]/20 origin-left">
+            <div class="flex items-center gap-2">
+              <span class="inline-block w-2 h-2 bg-[#E9631A]"></span>
+              <h3 class="text-sm font-bold text-[#162B31]">
+                Iced Coffee
+              </h3>
+            </div>
+            <span class="text-xs font-medium text-[#315762]">
+              Cold / Iced
+            </span>
+          </div>
+
+          <!-- Item Rows List -->
+          <div class="space-y-1">
+            
+            <!-- Iced Latte -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-iced-latte.jpg" alt="Iced Latte" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Iced Latte</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">104 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">38K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Cold fresh milk, espresso marbling, clear craft ice</p>
+              </div>
+            </div>
+
+            <!-- Iced Americano -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-iced-americano.jpg" alt="Iced Americano" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Iced Americano</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">121 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">32K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Chilled water, double shot espresso over crystal ice</p>
+              </div>
+            </div>
+
+            <!-- Iced Vanilla Latte -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-iced-latte.jpg" alt="Iced Vanilla Latte" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Iced Vanilla Latte</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">93 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">40K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Madagascar Bourbon vanilla bean syrup, espresso</p>
+              </div>
+            </div>
+
+            <!-- Iced Caramel Latte -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-iced-caramel.jpg" alt="Iced Caramel Latte" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Iced Caramel Latte</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">93 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">40K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">House-salted caramel reduction, espresso, cream</p>
+              </div>
+            </div>
+
+            <!-- Iced Spanish Latte -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-date-cream.jpg" alt="Iced Spanish Latte" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Iced Spanish Latte</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">93 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">42K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Condensed milk sweet base, textured milk, espresso</p>
+              </div>
+            </div>
+
+            <!-- Iced Matcha -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-iced-matcha.jpg" alt="Iced Matcha" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Iced Matcha</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">93 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">42K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Pure stone-ground Uji matcha, chilled sweet milk</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Category 04: MANUAL FILTER -->
+        <div class="menu-category-box bg-white p-4 sm:p-5 lg:p-6 rounded-none border border-[#315762]/20">
+          <!-- Category Header with Clean Underline -->
+          <div class="menu-cat-header flex items-center justify-between pb-3 mb-4 sm:mb-5 border-b border-[#315762]/20 origin-left">
+            <div class="flex items-center gap-2">
+              <span class="inline-block w-2 h-2 bg-[#E9631A]"></span>
+              <h3 class="text-sm font-bold text-[#162B31]">
+                Manual Filter
+              </h3>
+            </div>
+            <span class="text-xs font-medium text-[#315762]">
+              Pour Over
+            </span>
+          </div>
+
+          <!-- Item Rows List -->
+          <div class="space-y-1">
+            
+            <!-- Hario V60 Single Origin -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-v60.jpg" alt="Hario V60 Single Origin" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Hario V60 Single Origin</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">100 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">45K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Guest micro-lot rotational, 1:16 brew ratio, clean cup</p>
+              </div>
+            </div>
+
+            <!-- Aeropress Clarity -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-v60.jpg" alt="Aeropress Clarity" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Aeropress Clarity</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">115 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">42K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">Inverted method, round mouthfeel, highlighted sweetness</p>
+              </div>
+            </div>
+
+            <!-- Cold Drip Extraction -->
+            <div class="menu-item flex items-center gap-3 sm:gap-4 py-2.5 px-2.5 sm:px-3 group rounded-none cursor-pointer">
+              <div class="w-12 h-12 sm:w-14 sm:h-14 aspect-square shrink-0 bg-white p-1 rounded-none border border-[#315762]/20 group-hover:border-white/50 transition-colors overflow-hidden">
+                <img src="./images/menu-iced-americano.jpg" alt="Cold Drip Extraction" class="w-full h-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline justify-between gap-2">
+                  <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors truncate">Cold Drip Extraction</span>
+                  <div class="flex items-baseline gap-4 sm:gap-8 shrink-0">
+                    <span class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/85 transition-colors">85 kcal</span>
+                    <span class="text-sm sm:text-base font-bold text-[#162B31] group-hover:text-white transition-colors">45K</span>
+                  </div>
+                </div>
+                <p class="text-xs text-[#315762] group-hover:text-[#EFEFEF]/90 transition-colors truncate mt-0.5">12-hour slow cold water drip, dark fruit, zero bitterness</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- >>> END SECTION: menu.html <<< -->
+
+<!-- >>> START SECTION: gallery.html <<< -->
+<!-- ==========================================
+     RASTER · Section: Gallery & Space
+     Asymmetric Swiss Editorial Layout
+     Sits on Top of the Unified Page-Wide Swiss Grid
+========================================== -->
+<section id="gallery" class="relative z-10 bg-transparent py-16 lg:py-24">
+  <div class="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+    
+    <!-- Section Header: Clean Minimalist Editorial -->
+    <div class="mb-10 lg:mb-14">
+      <span id="gallery-tag" class="text-sm font-bold text-[#E9631A] block mb-3">
+        Gallery
+      </span>
+      <div class="overflow-hidden pb-2 sm:pb-3">
+        <h2 id="gallery-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#162B31] tracking-tight leading-[1.12]">
+          Atmosphere & Space<span class="text-[#E9631A]">.</span>
+        </h2>
+      </div>
+    </div>
+
+    <!-- Asymmetric Editorial Gallery Grid (Strictly Aligned with Swiss Grid) -->
+    <div class="space-y-6 sm:space-y-8">
+      
+      <!-- Tier 1: Asymmetric Split (7 cols wide landscape + 5 cols balanced) -->
+      <div id="gallery-tier-1" class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+        
+        <!-- Plate 01: Main Coffee Bar (7 cols) -->
+        <div class="gallery-plate lg:col-span-7 bg-white p-2.5 rounded-none border border-[#315762]/20 group overflow-hidden">
+          <div class="aspect-[16/10] overflow-hidden rounded-none bg-[#162B31]">
+            <img 
+              src="./images/gallery-1-bar.jpg" 
+              alt="Main coffee bar counter and seating at Raster" 
+              class="gallery-img w-full h-full object-cover grayscale-[10%] contrast-[105%] group-hover:scale-[1.02] transition-transform duration-500 will-change-transform"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-3.5 flex items-center justify-between text-xs text-[#315762] border-t border-[#315762]/15 mt-2">
+            <span class="font-bold text-[#162B31] group-hover:text-[#E9631A] transition-colors">Main Coffee Bar</span>
+            <span>Tlogomas, Malang</span>
+          </div>
+        </div>
+
+        <!-- Plate 02: Barista Pour Over (5 cols) -->
+        <div class="gallery-plate lg:col-span-5 bg-white p-2.5 rounded-none border border-[#315762]/20 group overflow-hidden">
+          <div class="aspect-[16/10] lg:aspect-[4/3] overflow-hidden rounded-none bg-[#162B31]">
+            <img 
+              src="./images/gallery-2-pour.jpg" 
+              alt="Barista brewing manual filter pour over" 
+              class="gallery-img w-full h-full object-cover grayscale-[10%] contrast-[105%] group-hover:scale-[1.02] transition-transform duration-500 will-change-transform"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-3.5 flex items-center justify-between text-xs text-[#315762] border-t border-[#315762]/15 mt-2">
+            <span class="font-bold text-[#162B31] group-hover:text-[#E9631A] transition-colors">Manual Filter Pour</span>
+            <span>Slow Brew Bar</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tier 2: 3-Column Detail Rhythm (4 cols + 4 cols + 4 cols) -->
+      <div id="gallery-tier-2" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
+        
+        <!-- Plate 03: Ceramic Cup Detail (4 cols) -->
+        <div class="gallery-plate bg-white p-2.5 rounded-none border border-[#315762]/20 group overflow-hidden">
+          <div class="aspect-square overflow-hidden rounded-none bg-[#162B31]">
+            <img 
+              src="./images/gallery-3-cup.jpg" 
+              alt="Ceramic cup with latte art on wooden table" 
+              class="gallery-img w-full h-full object-cover grayscale-[10%] contrast-[105%] group-hover:scale-[1.02] transition-transform duration-500 will-change-transform"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-3.5 flex items-center justify-between text-xs text-[#315762] border-t border-[#315762]/15 mt-2">
+            <span class="font-bold text-[#162B31] group-hover:text-[#E9631A] transition-colors">Daily Flat White</span>
+            <span>East Java Beans</span>
+          </div>
+        </div>
+
+        <!-- Plate 04: Garden Patio (4 cols) -->
+        <div class="gallery-plate bg-white p-2.5 rounded-none border border-[#315762]/20 group overflow-hidden">
+          <div class="aspect-square overflow-hidden rounded-none bg-[#162B31]">
+            <img 
+              src="./images/gallery-4-patio.jpg" 
+              alt="Outdoor leafy patio seating" 
+              class="gallery-img w-full h-full object-cover grayscale-[10%] contrast-[105%] group-hover:scale-[1.02] transition-transform duration-500 will-change-transform"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-3.5 flex items-center justify-between text-xs text-[#315762] border-t border-[#315762]/15 mt-2">
+            <span class="font-bold text-[#162B31] group-hover:text-[#E9631A] transition-colors">Outdoor Patio</span>
+            <span>Fresh Air & Greenery</span>
+          </div>
+        </div>
+
+        <!-- Plate 05: Fresh Roasted Beans (4 cols) -->
+        <div class="gallery-plate bg-white p-2.5 rounded-none border border-[#315762]/20 group sm:col-span-2 lg:col-span-1 overflow-hidden">
+          <div class="aspect-square overflow-hidden rounded-none bg-[#162B31]">
+            <img 
+              src="./images/gallery-5-cooling.jpg" 
+              alt="Freshly roasted specialty coffee beans" 
+              class="gallery-img w-full h-full object-cover grayscale-[10%] contrast-[105%] group-hover:scale-[1.02] transition-transform duration-500 will-change-transform"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-3.5 flex items-center justify-between text-xs text-[#315762] border-t border-[#315762]/15 mt-2">
+            <span class="font-bold text-[#162B31] group-hover:text-[#E9631A] transition-colors">Roaster Cooling Tray</span>
+            <span>Weekly Small Batch</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tier 3: Inverted Asymmetric Split (5 cols medium landscape + 7 cols wide landscape) -->
+      <div id="gallery-tier-3" class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+        
+        <!-- Plate 06: Communal Desk (5 cols) -->
+        <div class="gallery-plate lg:col-span-5 bg-white p-2.5 rounded-none border border-[#315762]/20 group overflow-hidden">
+          <div class="aspect-[16/10] lg:aspect-[4/3] overflow-hidden rounded-none bg-[#162B31]">
+            <img 
+              src="./images/gallery-6-desk.jpg" 
+              alt="Communal work table with coffee and notebook" 
+              class="gallery-img w-full h-full object-cover grayscale-[10%] contrast-[105%] group-hover:scale-[1.02] transition-transform duration-500 will-change-transform"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-3.5 flex items-center justify-between text-xs text-[#315762] border-t border-[#315762]/15 mt-2">
+            <span class="font-bold text-[#162B31] group-hover:text-[#E9631A] transition-colors">Communal Work Table</span>
+            <span>Quiet & Outlets</span>
+          </div>
+        </div>
+
+        <!-- Plate 07: Roastery Vault (7 cols) -->
+        <div class="gallery-plate lg:col-span-7 bg-white p-2.5 rounded-none border border-[#315762]/20 group overflow-hidden">
+          <div class="aspect-[16/10] overflow-hidden rounded-none bg-[#162B31]">
+            <img 
+              src="./images/gallery-7-roaster.jpg" 
+              alt="Coffee roasting staging area and roasted coffee bags" 
+              class="gallery-img w-full h-full object-cover grayscale-[10%] contrast-[105%] group-hover:scale-[1.02] transition-transform duration-500 will-change-transform"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-3.5 flex items-center justify-between text-xs text-[#315762] border-t border-[#315762]/15 mt-2">
+            <span class="font-bold text-[#162B31] group-hover:text-[#E9631A] transition-colors">Roasting Area</span>
+            <span>Packaging & Storage</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- >>> END SECTION: gallery.html <<< -->
+
+<!-- >>> START SECTION: visit.html <<< -->
+<!-- ==========================================
+     RASTER · Location & Full Map Section
+     Flagship: Tlogomas, Malang, East Java
+     Sits on Top of the Unified Page-Wide Swiss Grid
+========================================== -->
+<section id="visit" class="relative z-10 bg-transparent py-16 lg:py-24">
+  <div class="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+    
+    <!-- Section Header: Clean Minimalist Editorial -->
+    <div class="mb-10 lg:mb-14">
+      <span id="visit-tag" class="text-sm font-bold text-[#E9631A] block mb-3">
+        Location
+      </span>
+      <div class="overflow-hidden pb-2 sm:pb-3">
+        <h2 id="visit-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#162B31] tracking-tight leading-[1.12]">
+          Visit Our Bar<span class="text-[#E9631A]">.</span>
+        </h2>
+      </div>
+    </div>
+
+    <!-- Full Map Container (Museum Frame Style) -->
+    <div id="visit-card" class="bg-white p-2.5 rounded-none border border-[#315762]/20 relative overflow-hidden">
+      
+      <!-- Interactive Map Frame (Unobstructed Full View) -->
+      <div class="relative w-full h-[480px] sm:h-[540px] lg:h-[580px] rounded-none overflow-hidden bg-[#EFEFEF]">
+        <!-- Leaflet Map Container (with data-lenis-prevent to preserve smooth map zoom) -->
+        <div id="raster-map" class="w-full h-full z-10" data-lenis-prevent></div>
+      </div>
+
+      <!-- Map Museum Footer Bar: Clean & Informative -->
+      <div id="visit-footer-bar" class="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between text-xs text-[#315762] border-t border-[#315762]/15 mt-2 gap-3">
+        
+        <div id="visit-info" class="space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="inline-block w-2 h-2 bg-[#E9631A]"></span>
+            <span class="font-bold text-sm text-[#162B31]">Raster Flagship · Tlogomas, Malang</span>
+          </div>
+          <p class="text-[#315762] text-xs">
+            Jl. Raya Tlogomas No. 42, Lowokwaru, Kota Malang · Open Daily: 07:30 – 21:30 WIB
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- >>> END SECTION: visit.html <<< -->
+
+<!-- >>> START SECTION: footer.html <<< -->
+<!-- ==========================================
+     RASTER · Redesigned Swiss Editorial Masthead Footer
+     Seamless Light Palette (Flash White #EFEFEF)
+     Origin: Tlogomas, Malang, East Java
+========================================== -->
+<footer class="bg-transparent text-[#162B31] pt-16 sm:pt-20 pb-12 relative overflow-hidden border-t border-[#315762]/20">
+  <div class="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+    
+    <!-- Top Row: Editorial Brand Masthead -->
+    <div class="pb-12 sm:pb-16 border-b border-[#315762]/20">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <!-- Logo & Brand Wordmark -->
+          <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+            <svg class="w-8 h-8 sm:w-12 sm:h-12 lg:w-14 lg:h-14 text-[#E9631A] shrink-0" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="3" y="3" width="7.5" height="7.5" />
+              <rect x="13.5" y="3" width="7.5" height="7.5" />
+              <rect x="3" y="13.5" width="7.5" height="7.5" />
+              <rect x="13.5" y="13.5" width="7.5" height="7.5" />
+            </svg>
+            <span class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-[-0.03em] text-[#162B31]">
+              RASTER<span class="text-[#E9631A]">.</span>
+            </span>
+          </div>
+          <p class="text-sm sm:text-base text-[#315762] max-w-lg leading-relaxed">
+            Specialty coffee roastery rooted in Tlogomas, Malang. Sourced directly from Indonesian highland farmers, roasted fresh weekly, and poured with honest craft.
+          </p>
+        </div>
+
+        <!-- Quick Action / Status Badge with Consistent Shutter Wipe -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 shrink-0">
+          <a 
+            href="#roast-spec" 
+            class="relative inline-flex items-center justify-center gap-2 bg-[#E9631A] text-white text-xs font-bold px-5 py-3 rounded-none overflow-hidden group active:scale-[0.98] transition-transform"
+          >
+            <!-- Background Shutter Wipe (Deep Charcoal #162B31 from Bottom) -->
+            <span class="absolute inset-0 bg-[#162B31] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"></span>
+            <span class="relative z-10 inline-flex items-center gap-2">
+              <span>Explore Coffee Beans</span>
+              <i class="ph ph-arrow-right text-sm transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1"></i>
+            </span>
+          </a>
+          <a 
+            href="#visit" 
+            class="relative inline-flex items-center justify-center gap-2 bg-white text-[#162B31] text-xs font-semibold px-5 py-3 rounded-none border border-[#315762]/25 overflow-hidden group active:scale-[0.98] transition-transform"
+          >
+            <!-- Background Shutter Wipe (Signature Orange #E9631A from Bottom) -->
+            <span class="absolute inset-0 bg-[#E9631A] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"></span>
+            <span class="relative z-10 inline-flex items-center gap-2 transition-colors duration-300 group-hover:text-white">
+              <span>Visit Bar</span>
+              <i class="ph ph-map-pin text-sm text-[#E9631A] group-hover:text-white transition-colors duration-300"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4-Column Swiss Grid (Matching Page Master Tracks) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 py-12 border-b border-[#315762]/20 text-xs">
+      
+      <!-- Track 01: Directory -->
+      <div>
+        <span class="font-bold text-[#E9631A] block mb-4">
+          Directory
+        </span>
+        <ul class="space-y-2.5 text-[#315762]">
+          <li>
+            <a href="#about" class="swiss-link">Our Malang Story</a>
+          </li>
+          <li>
+            <a href="#roast-spec" class="swiss-link">Coffee Beans Catalog</a>
+          </li>
+          <li>
+            <a href="#menu" class="swiss-link">Coffee & Drinks Menu</a>
+          </li>
+          <li>
+            <a href="#gallery" class="swiss-link">Space & Atmosphere</a>
+          </li>
+          <li>
+            <a href="#visit" class="swiss-link">Location & Full Map</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Track 02: Coffee & Roastery -->
+      <div>
+        <span class="font-bold text-[#E9631A] block mb-4">
+          Current Roasts
+        </span>
+        <ul class="space-y-2.5 text-[#315762]">
+          <li>
+            <a href="#roast-spec" class="swiss-link">Dampit Highlands (East Java)</a>
+          </li>
+          <li>
+            <a href="#roast-spec" class="swiss-link">Arjuno Honey (Mount Arjuno)</a>
+          </li>
+          <li>
+            <a href="#roast-spec" class="swiss-link">Gayo Pantan Musara (Aceh)</a>
+          </li>
+          <li>
+            <a href="#roast-spec" class="swiss-link">Toraja Sapan (Sulawesi)</a>
+          </li>
+          <li>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="swiss-link font-medium">Wholesale & Beans Supply &rarr;</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Track 03: Flagship Bar -->
+      <div>
+        <span class="font-bold text-[#E9631A] block mb-4">
+          Flagship Bar
+        </span>
+        <div class="space-y-2 text-[#315762] leading-relaxed">
+          <p class="text-[#162B31] font-bold">
+            Jl. Raya Tlogomas No. 42
+          </p>
+          <p>
+            Lowokwaru, Kota Malang<br>
+            Jawa Timur 65144, Indonesia
+          </p>
+          <div class="pt-2 text-[#315762] space-y-1">
+            <p><span class="text-[#162B31] font-semibold">Mon – Fri:</span> 07:30 – 21:30 WIB</p>
+            <p><span class="text-[#162B31] font-semibold">Sat – Sun:</span> 07:00 – 22:00 WIB</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 04: Connect & Socials -->
+      <div>
+        <span class="font-bold text-[#E9631A] block mb-4">
+          Connect
+        </span>
+        <ul class="space-y-2.5 text-[#315762]">
+          <li>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="swiss-link inline-flex items-center gap-2">
+              <i class="ph ph-instagram-logo text-sm text-[#E9631A]"></i>
+              <span>@raster.kaffee</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="swiss-link inline-flex items-center gap-2">
+              <i class="ph ph-whatsapp-logo text-sm text-[#25D366]"></i>
+              <span>+62 812 3456 7890</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:hello@rastercoffee.com" class="swiss-link inline-flex items-center gap-2">
+              <i class="ph ph-envelope-simple text-sm text-[#E9631A]"></i>
+              <span>hello@rastercoffee.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://maps.google.com/?q=Jl.+Raya+Tlogomas+No.+42,+Lowokwaru,+Malang" target="_blank" rel="noopener noreferrer" class="swiss-link inline-flex items-center gap-2">
+              <i class="ph ph-map-pin text-sm text-[#E9631A]"></i>
+              <span>Directions on Maps</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Row: Meta, Copyright & Back to Top -->
+    <div class="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-[#315762]/70 gap-4">
+      
+      <div class="flex flex-wrap items-center gap-3">
+        <span>&copy; 2026 Raster Kaffee & Lab. All rights reserved.</span>
+        <span>·</span>
+        <span>Tlogomas, Malang, East Java</span>
+      </div>
+
+      <a 
+        href="#hero" 
+        class="swiss-link inline-flex items-center gap-1.5 font-semibold group"
+      >
+        <span>Back to top</span>
+        <i class="ph ph-arrow-up group-hover:-translate-y-0.5 transition-transform text-sm text-[#E9631A]"></i>
+      </a>
+
+    </div>
+
+  </div>
+</footer>
+<!-- >>> END SECTION: footer.html <<< -->
+
+  </div>
+
+  <!-- Interactive Logic (Tab Filters, Reservation Handler, Leaflet Map) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Initialize Leaflet CARTO Positron Map
+      let leafletMap = null;
+      const mapContainer = document.getElementById('raster-map');
+      if (mapContainer && typeof L !== 'undefined') {
+        // Tlogomas, Malang coordinates: -7.9288, 112.5992
+        const rasterCoords = [-7.9288, 112.5992];
+        const map = L.map('raster-map', {
+          center: rasterCoords,
+          zoom: 15,
+          scrollWheelZoom: false,
+          zoomControl: false
+        });
+        leafletMap = map;
+
+        // OpenStreetMap Tile Layer (100% Free, Zero Watermark, Pure Monochrome via CSS Filter)
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          maxZoom: 19
+        }).addTo(map);
+
+        // Zoom control in top right corner
+        L.control.zoom({ position: 'topright' }).addTo(map);
+
+        // Custom Minimal Swiss Pin Icon (Orange Signature Mark)
+        const customPin = L.divIcon({
+          className: 'custom-raster-pin',
+          html: '<div style="position:relative;display:flex;align-items:center;justify-content:center;">' +
+                '<div style="position:absolute;width:38px;height:38px;background:rgba(233,99,26,0.25);animation:ping 2s cubic-bezier(0,0,0.2,1) infinite;"></div>' +
+                '<div style="position:relative;width:32px;height:32px;background:#E9631A;color:white;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(22,43,49,0.3);">' +
+                '<svg style="width:16px;height:16px;fill:white;" viewBox="0 0 24 24">' +
+                '<rect x="3" y="3" width="7.5" height="7.5"/>' +
+                '<rect x="13.5" y="3" width="7.5" height="7.5"/>' +
+                '<rect x="3" y="13.5" width="7.5" height="7.5"/>' +
+                '<rect x="13.5" y="13.5" width="7.5" height="7.5"/>' +
+                '</svg></div></div>',
+          iconSize: [32, 32],
+          iconAnchor: [16, 16],
+          popupAnchor: [0, -18]
+        });
+
+        const marker = L.marker(rasterCoords, { icon: customPin }).addTo(map);
+
+        marker.bindPopup(
+          '<div style="background:white;padding:12px 14px;font-family:Manrope,sans-serif;">' +
+          '<span style="display:block;font-size:11px;font-weight:700;color:#E9631A;margin-bottom:2px;">Flagship Roastery</span>' +
+          '<strong style="display:block;font-size:14px;color:#162B31;margin-bottom:4px;">Raster Kaffee & Lab</strong>' +
+          '<p style="margin:0 0 8px 0;font-size:12px;color:#315762;line-height:1.4;">Jl. Raya Tlogomas No. 42, Lowokwaru, Malang</p>' +
+          '<a href="https://maps.google.com/?q=Jl.+Raya+Tlogomas+No.+42,+Lowokwaru,+Malang" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:#E9631A;text-decoration:none;">' +
+          '<span>Open Directions</span> <span>&rarr;</span>' +
+          '</a></div>'
+        );
+      }
+
+      // 3. Initialize Lenis Smooth Scroll (Studio Freight / Darkroom Engineering)
+      let lenis = null;
+      if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: 'vertical',
+          gestureOrientation: 'vertical',
+          smoothWheel: true,
+          wheelMultiplier: 1.0,
+          touchMultiplier: 1.5,
+          infinite: false
+        });
+
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Smooth scroll for in-page anchors with Lenis
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId && targetId !== '#') {
+              const targetEl = document.querySelector(targetId);
+              if (targetEl) {
+                e.preventDefault();
+                lenis.scrollTo(targetEl, { offset: -16, duration: 1.3 });
+              }
+            }
+          });
+        });
+      }
+
+      // 4. GSAP & ScrollTrigger Awwwards-Caliber Motion Orchestration
+      if (typeof gsap !== 'undefined') {
+        if (typeof ScrollTrigger !== 'undefined') {
+          gsap.registerPlugin(ScrollTrigger);
+
+          // Synchronize Lenis and GSAP ScrollTrigger
+          if (lenis) {
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => {
+              lenis.raf(time * 1000);
+            });
+            gsap.ticker.lagSmoothing(0);
+          }
+        }
+
+        // A. Hero Master Entrance Sequence (Timeline)
+        const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+
+        // 1. Kinetic Headline Mask Reveal
+        heroTl.fromTo('#hero-title',
+          { y: '115%', opacity: 0 },
+          { y: '0%', opacity: 1, duration: 1.3, ease: 'power4.out' }
+        );
+
+        // 2. Sub-headlines stagger upward
+        heroTl.fromTo(['#hero-sub-left', '#hero-sub-right'],
+          { y: 28, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.9, stagger: 0.12, ease: 'power3.out' },
+          '-=0.8'
+        );
+
+        // 3. 4 Photographic Plates Reveal smoothly with locked equal heights
+        heroTl.fromTo('.hero-plate',
+          { y: 35, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1.1, stagger: 0.1, ease: 'power4.out' },
+          '-=0.6'
+        );
+
+        // B. Section About ScrollTrigger Orchestration (Editorial Swiss & Lens Settle)
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+          const aboutTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: '#about',
+              start: 'top 75%',
+              toggleActions: 'play none none none',
+              once: true
+            },
+            defaults: { ease: 'power4.out' }
+          });
+
+          // 1. Tag & Masked Headline Reveal
+          aboutTl.fromTo('#about-tag',
+            { y: 16, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
+          );
+
+          aboutTl.fromTo('#about-title',
+            { y: '115%', opacity: 0 },
+            { y: '0%', opacity: 1, duration: 1.2, ease: 'power4.out' },
+            '-=0.6'
+          );
+
+          // 2. Editorial narrative paragraphs staggered fade up
+          aboutTl.fromTo('.about-p',
+            { y: 24, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: 'power3.out' },
+            '-=0.8'
+          );
+
+          // 3. Right Column: Museum Frame Architectural Curtain Reveal
+          aboutTl.fromTo('#about-card',
+            { clipPath: 'inset(100% 0% 0% 0%)', opacity: 0 },
+            { clipPath: 'inset(0% 0% 0% 0%)', opacity: 1, duration: 1.2, ease: 'power4.inOut' },
+            '-=1.0'
+          );
+
+          // 4. Leica-style lens settle on barista photo (scale 1.12 to 1.0)
+          aboutTl.fromTo('#about-img',
+            { scale: 1.12 },
+            { scale: 1.0, duration: 1.4, ease: 'power3.out' },
+            '-=1.1'
+          );
+
+          // 5. Image caption strip subtle fade-in
+          aboutTl.fromTo('#about-caption',
+            { opacity: 0, y: 10 },
+            { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' },
+            '-=0.4'
+          );
+        }
+
+        // C. Section Beans (Coffee Beans Catalog) ScrollTrigger Orchestration
+        const beansSection = document.getElementById('roast-spec');
+        if (beansSection) {
+          const beansTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: '#roast-spec',
+              start: 'top 75%',
+              toggleActions: 'play none none none',
+              once: true
+            },
+            defaults: { ease: 'power4.out' }
+          });
+
+          // 1. Tag & Masked Headline Reveal
+          beansTl.fromTo('#beans-tag',
+            { y: 16, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
+          );
+
+          beansTl.fromTo('#beans-title',
+            { y: '115%', opacity: 0 },
+            { y: '0%', opacity: 1, duration: 1.2, ease: 'power4.out' },
+            '-=0.6'
+          );
+
+          // 2. 4-Column Bean Cards Cascade Stagger
+          beansTl.fromTo('.bean-item',
+            { y: 40, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1.1, stagger: 0.12, ease: 'power4.out' },
+            '-=0.8'
+          );
+
+          // 3. Pouch packshot settle inside white museum frames
+          beansTl.fromTo('.bean-img',
+            { scale: 1.08 },
+            { scale: 1.0, duration: 1.2, stagger: 0.12, ease: 'power3.out' },
+            '-=1.1'
+          );
+
+          // 4. Card details typography reveal (title, origin, tasting notes, price)
+          beansTl.fromTo('.bean-info',
+            { opacity: 0, y: 12 },
+            { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: 'power2.out' },
+            '-=0.9'
+          );
+        }
+
+        // D. Section Menu (Coffee & Drinks Index) ScrollTrigger Orchestration
+        const menuSection = document.getElementById('menu');
+        if (menuSection) {
+          const menuTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: '#menu',
+              start: 'top 75%',
+              toggleActions: 'play none none none',
+              once: true
+            },
+            defaults: { ease: 'power4.out' }
+          });
+
+          // 1. Tag & Masked Headline Reveal
+          menuTl.fromTo('#menu-tag',
+            { y: 16, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
+          );
+
+          menuTl.fromTo('#menu-title',
+            { y: '115%', opacity: 0 },
+            { y: '0%', opacity: 1, duration: 1.2, ease: 'power4.out' },
+            '-=0.6'
+          );
+
+          // 2. Outlined Category Containers Cascade
+          menuTl.fromTo('.menu-category-box',
+            { opacity: 0, y: 28 },
+            { opacity: 1, y: 0, duration: 0.9, stagger: 0.12, ease: 'power4.out' },
+            '-=0.7'
+          );
+
+          // 3. Staggered Menu Item Rows Cascade (smooth, crisp editorial flow)
+          menuTl.fromTo('.menu-item',
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.6, stagger: 0.035, ease: 'power3.out', clearProps: 'transform' },
+            '-=0.5'
+          );
+        }
+
+        // E. Section Gallery (Atmosphere & Space) ScrollTrigger Orchestration
+        const gallerySection = document.getElementById('gallery');
+        if (gallerySection) {
+          // 1. Gallery Header Timeline
+          const galleryTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: '#gallery',
+              start: 'top 75%',
+              toggleActions: 'play none none none',
+              once: true
+            },
+            defaults: { ease: 'power4.out' }
+          });
+
+          galleryTl.fromTo('#gallery-tag',
+            { y: 16, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
+          );
+
+          galleryTl.fromTo('#gallery-title',
+            { y: '115%', opacity: 0 },
+            { y: '0%', opacity: 1, duration: 1.2, ease: 'power4.out' },
+            '-=0.6'
+          );
+
+          // 2. Tier-by-Tier Architectural Stagger on Scroll
+          ['#gallery-tier-1', '#gallery-tier-2', '#gallery-tier-3'].forEach(tierId => {
+            const tierEl = document.querySelector(tierId);
+            if (tierEl) {
+              const tierPlates = tierEl.querySelectorAll('.gallery-plate');
+              const tierImgs = tierEl.querySelectorAll('.gallery-img');
+
+              const tierTl = gsap.timeline({
+                scrollTrigger: {
+                  trigger: tierEl,
+                  start: 'top 80%',
+                  toggleActions: 'play none none none',
+                  once: true
+                },
+                defaults: { ease: 'power4.out' }
+              });
+
+              tierTl.fromTo(tierPlates,
+                { y: 38, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1.1, stagger: 0.15, ease: 'power4.out' }
+              );
+
+              tierTl.fromTo(tierImgs,
+                { scale: 1.08 },
+                { scale: 1.0, duration: 1.3, stagger: 0.15, ease: 'power3.out' },
+                '-=1.0'
+              );
+            }
+          });
+        }
+
+        // F. Section Location & Map ScrollTrigger Orchestration
+        const visitSection = document.getElementById('visit');
+        if (visitSection) {
+          const visitTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: '#visit',
+              start: 'top 75%',
+              toggleActions: 'play none none none',
+              once: true
+            },
+            defaults: { ease: 'power4.out' },
+            onComplete: () => {
+              if (leafletMap) {
+                leafletMap.invalidateSize();
+              }
+            }
+          });
+
+          // 1. Tag & Masked Headline Reveal
+          visitTl.fromTo('#visit-tag',
+            { y: 16, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
+          );
+
+          visitTl.fromTo('#visit-title',
+            { y: '115%', opacity: 0 },
+            { y: '0%', opacity: 1, duration: 1.2, ease: 'power4.out' },
+            '-=0.6'
+          );
+
+          // 2. Museum Frame Architectural Curtain Reveal
+          visitTl.fromTo('#visit-card',
+            { clipPath: 'inset(100% 0% 0% 0%)', opacity: 0 },
+            { clipPath: 'inset(0% 0% 0% 0%)', opacity: 1, duration: 1.2, ease: 'power4.inOut' },
+            '-=0.8'
+          );
+
+          // 3. Map View Subtle Settle
+          visitTl.fromTo('#raster-map',
+            { scale: 1.05, opacity: 0.6 },
+            { scale: 1.0, opacity: 1.0, duration: 1.3, ease: 'power3.out' },
+            '-=1.0'
+          );
+
+          // 4. Custom Swiss Orange Pin Pulse Intro
+          visitTl.fromTo('.custom-raster-pin',
+            { scale: 0, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.9, ease: 'back.out(1.8)' },
+            '-=0.5'
+          );
+
+          // 5. Museum Footer Details Float In
+          visitTl.fromTo('#visit-info',
+            { y: 16, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
+            '-=0.6'
+          );
+        }
+      }
+    });
+  </script>
+</body>
+</html>

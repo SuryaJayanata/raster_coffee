@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RASTER · Specialty Single-Origin Coffee Beans | Coffee Details</title>
+  <meta name="description" content="Precision roasted specialty coffee beans from East Java and across Indonesia. Explore origin, altitude, fermentation, and tasting notes.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23E9631A'/><text y='70' x='50' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='60' fill='%23ffffff'>R</text></svg>">
+
+  <!-- Google Fonts: Manrope (CDN) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons (CDN) -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Lenis Smooth Scroll CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <!-- Tailwind CSS v4 (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --color-brand-orange: #E9631A;
+      --color-brand-white: #EFEFEF;
+      --color-brand-slate: #315762;
+      --color-brand-dark: #162B31;
+    }
+  </style>
+
+  <style>
+    html, body {
+      font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #EFEFEF;
+      color: #162B31;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .swiss-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .swiss-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #E9631A;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .swiss-link:hover {
+      color: #E9631A !important;
+    }
+    .swiss-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-[#E9631A] selection:text-white bg-[#EFEFEF] relative">
+
+  <div class="relative z-10 flex flex-col w-full min-h-screen">
+
+    <!-- 100% Identical Landing Page Master Navbar -->
+    <!-- ==========================================
+     RASTER · Navigation Bar (100% Transparent Floating Masthead)
+     No Background, Unified Grid Passes Through to the Very Top
+     Zero Collision with Hero Typography
+========================================== -->
+<header class="relative z-20 bg-transparent transition-all duration-200">
+  <div class="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+    <div class="grid grid-cols-2 md:grid-cols-12 items-center h-20 sm:h-24">
+      
+      <!-- Left Column: Slashed Navigation Links (Desktop) -->
+      <nav class="hidden md:flex md:col-span-5 items-center gap-3 text-xs font-semibold tracking-wide text-[#315762]" aria-label="Left Navigation">
+        <a href="index.html#about" class="swiss-link py-1">
+          About
+        </a>
+        <span class="text-[#315762]/30 select-none">/</span>
+        <a href="index.html#roast-spec" class="swiss-link py-1">
+          Coffee Beans
+        </a>
+        <span class="text-[#315762]/30 select-none">/</span>
+        <a href="index.html#menu" class="swiss-link py-1">
+          Menu
+        </a>
+      </nav>
+
+      <!-- Center Column: RASTER Logo (Geometric Grid Mark + Wordmark) -->
+      <div class="flex items-center justify-start md:justify-center md:col-span-2">
+        <a href="index.html" class="inline-flex items-center gap-2.5 group focus:outline-none focus-visible:ring-1 focus-visible:ring-[#E9631A]">
+          <!-- Geometric Swiss Grid Matrix Icon (Raster Concept) -->
+          <svg class="w-5 h-5 text-[#E9631A] group-hover:rotate-90 transition-transform duration-300 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="3" y="3" width="7.5" height="7.5" />
+            <rect x="13.5" y="3" width="7.5" height="7.5" />
+            <rect x="3" y="13.5" width="7.5" height="7.5" />
+            <rect x="13.5" y="13.5" width="7.5" height="7.5" />
+          </svg>
+          <!-- Bold Brand Wordmark -->
+          <span class="text-xl sm:text-2xl font-black tracking-[-0.03em] text-[#162B31] group-hover:text-[#E9631A] transition-colors">
+            RASTER
+          </span>
+        </a>
+      </div>
+
+      <!-- Right Column: Secondary Links & Sharp Orange CTA Button (No Rounded) -->
+      <div class="flex items-center justify-end md:col-span-5 gap-4 lg:gap-6">
+        
+        <!-- Secondary Slashed Links (Desktop) -->
+        <nav class="hidden lg:flex items-center gap-3 text-xs font-semibold tracking-wide text-[#315762]" aria-label="Right Navigation">
+          <a href="index.html#gallery" class="swiss-link py-1">
+            Gallery
+          </a>
+          <span class="text-[#315762]/30 select-none">/</span>
+          <a href="index.html#visit" class="swiss-link py-1">
+            Location
+          </a>
+        </nav>
+
+        <!-- Sharp Orange CTA Button with Architectural Charcoal Shutter & Arrow Glide -->
+        <a href="index.html#roast-spec" class="relative inline-flex items-center justify-center gap-2 bg-[#E9631A] text-white text-xs font-bold tracking-wide px-4 sm:px-5 py-2.5 sm:py-3 rounded-none overflow-hidden group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#162B31] active:scale-[0.98] transition-transform">
+          <!-- Background Shutter Wipe (Deep Charcoal #162B31 from Bottom) -->
+          <span class="absolute inset-0 bg-[#162B31] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"></span>
+          
+          <!-- Button Label & Kinetic Arrow Glide -->
+          <span class="relative z-10 inline-flex items-center gap-1.5">
+            <span>Order Beans</span>
+            <i class="ph ph-arrow-right text-xs transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1"></i>
+          </span>
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+    <!-- Main Clean Editorial Product Showcase (Naturally Proportioned, Comfortable & Balanced) -->
+    <main class="py-12 sm:py-16 lg:py-20 flex-1 flex items-center">
+      <div class="max-w-[1080px] mx-auto px-4 sm:px-8 lg:px-12 w-full">
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-14 items-center">
+          
+          <!-- Visual Column: Packshot Museum Frame (5 cols on md/lg, ~440px wide) -->
+          <div class="md:col-span-5">
+            <div class="bg-white p-5 sm:p-7 rounded-none border border-[#315762]/20">
+              <div class="aspect-square bg-white flex items-center justify-center p-3 sm:p-6 overflow-hidden">
+                <img 
+                  id="detail-img" 
+                  src="./images/bean-1-dampit.jpg" 
+                  alt="Specialty coffee roasted pouch" 
+                  class="w-full h-full object-contain hover:scale-105 transition-transform duration-500 will-change-transform"
+                />
+              </div>
+              <div class="pt-3.5 border-t border-[#315762]/15 flex items-center justify-between text-xs text-[#315762]">
+                <span id="detail-region" class="font-bold text-[#162B31]">Semeru Highlands, Malang</span>
+                <span class="text-[#E9631A] font-semibold">250g Valve Pouch</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Essential Product Details & Checkout Column (7 cols on md/lg, ~560px wide) -->
+          <div class="md:col-span-7 space-y-5 flex flex-col justify-center">
+            
+            <div>
+              <span class="text-xs font-bold text-[#E9631A] block mb-1.5">
+                Specialty Single-Origin
+              </span>
+              <h1 id="detail-title" class="text-3xl sm:text-4xl lg:text-[40px] font-extrabold text-[#162B31] tracking-tight leading-[1.15]">
+                Dampit Highlands<span class="text-[#E9631A]">.</span>
+              </h1>
+              <div class="pt-2 flex items-baseline gap-2">
+                <span id="detail-price" class="text-2xl sm:text-3xl font-extrabold text-[#162B31]">
+                  IDR 135,000
+                </span>
+                <span class="text-xs text-[#315762]">/ 250g valve pouch</span>
+              </div>
+            </div>
+
+            <!-- Tasting Notes -->
+            <div class="space-y-1">
+              <span class="text-xs font-bold text-[#315762] block">Tasting Notes</span>
+              <p id="detail-notes" class="text-base sm:text-lg font-bold text-[#162B31] tracking-tight">
+                Dark Chocolate, Candied Orange, Brown Sugar
+              </p>
+            </div>
+
+            <!-- Short Concise Narrative -->
+            <p id="detail-desc" class="text-xs sm:text-sm text-[#315762] leading-relaxed max-w-lg">
+              Cultivated on the mineral-dense southern slopes of Mount Semeru in Dampit, Malang. Full washed and small-batch roasted for exceptional sweetness, deep chocolate body, and a clean finish.
+            </p>
+
+            <!-- 3 Essential Specs (Process, Altitude, Roast) -->
+            <div class="py-3 border-y border-[#315762]/15 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-[#315762] max-w-lg">
+              <div>
+                <span class="text-[#315762]/60">Process:</span>
+                <strong id="detail-process" class="text-[#162B31] font-bold ml-1">Full Washed</strong>
+              </div>
+              <div>
+                <span class="text-[#315762]/60">Altitude:</span>
+                <strong id="detail-altitude" class="text-[#162B31] font-bold ml-1">1,100 – 1,350 masl</strong>
+              </div>
+              <div>
+                <span class="text-[#315762]/60">Roast Degree:</span>
+                <strong id="detail-roast" class="text-[#162B31] font-bold ml-1">Medium Roast</strong>
+              </div>
+            </div>
+
+            <!-- Action Buttons (Comfortable width max-w-md, ~440px) -->
+            <div class="pt-2 space-y-2.5 w-full max-w-md">
+              <a 
+                id="detail-shopee-link" 
+                href="https://shopee.co.id/raster.coffee" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="relative w-full inline-flex items-center justify-center gap-2 bg-[#E9631A] text-white text-xs font-bold py-3.5 px-5 rounded-none overflow-hidden group active:scale-[0.98] transition-transform"
+              >
+                <span class="absolute inset-0 bg-[#162B31] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"></span>
+                <span class="relative z-10 inline-flex items-center gap-2">
+                  <span>Order on Shopee Official (Free Shipping)</span>
+                  <i class="ph ph-arrow-square-out text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+                </span>
+              </a>
+
+              <!-- WhatsApp CTA with Architectural Bottom-Up Shutter Wipe & Kinetic Arrow -->
+              <a 
+                id="detail-wa-link" 
+                href="https://wa.me/6281234567890" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="relative w-full inline-flex items-center justify-center gap-2 bg-white border border-[#315762]/30 text-[#162B31] hover:border-[#162B31] text-xs font-bold py-3.5 px-5 rounded-none overflow-hidden group active:scale-[0.98] transition-all"
+              >
+                <!-- Background Shutter Wipe (Deep Charcoal #162B31 from Bottom) -->
+                <span class="absolute inset-0 bg-[#162B31] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"></span>
+                <span class="relative z-10 inline-flex items-center justify-center gap-2 w-full transition-colors duration-300 group-hover:text-white">
+                  <i class="ph ph-whatsapp-logo text-base text-[#25D366] transition-transform duration-300 group-hover:scale-115 group-hover:rotate-6"></i>
+                  <span>Order via WhatsApp Direct</span>
+                  <i class="ph ph-arrow-right text-xs text-[#315762] transition-all duration-300 group-hover:text-white group-hover:translate-x-1"></i>
+                </span>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Other Roasted Beans Section (Placed at Bottom with Packshot Images) -->
+        <div class="mt-14 sm:mt-18 pt-10 border-t border-[#315762]/20">
+          <div class="flex items-center justify-between mb-6">
+            <div>
+              <span class="text-xs font-bold text-[#E9631A] block mb-1">
+                Explore Roastery
+              </span>
+              <h2 class="text-xl sm:text-2xl font-extrabold text-[#162B31] tracking-tight">
+                Other Roasted Beans<span class="text-[#E9631A]">.</span>
+              </h2>
+            </div>
+            <a href="index.html#roast-spec" class="text-xs font-bold text-[#315762] hover:text-[#E9631A] transition-colors inline-flex items-center gap-1 group">
+              <span>All Beans</span>
+              <i class="ph ph-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
+
+          <!-- 3-Column Visual Packshot Cards Grid -->
+          <div id="other-beans-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            <!-- Dynamically populated with packshot image, title, notes, and price -->
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- 100% Identical Landing Page Master Footer -->
+    <!-- ==========================================
+     RASTER · Redesigned Swiss Editorial Masthead Footer
+     Seamless Light Palette (Flash White #EFEFEF)
+     Origin: Tlogomas, Malang, East Java
+========================================== -->
+<footer class="bg-transparent text-[#162B31] pt-16 sm:pt-20 pb-12 relative overflow-hidden border-t border-[#315762]/20">
+  <div class="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+    
+    <!-- Top Row: Editorial Brand Masthead -->
+    <div class="pb-12 sm:pb-16 border-b border-[#315762]/20">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <!-- Logo & Brand Wordmark -->
+          <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+            <svg class="w-8 h-8 sm:w-12 sm:h-12 lg:w-14 lg:h-14 text-[#E9631A] shrink-0" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="3" y="3" width="7.5" height="7.5" />
+              <rect x="13.5" y="3" width="7.5" height="7.5" />
+              <rect x="3" y="13.5" width="7.5" height="7.5" />
+              <rect x="13.5" y="13.5" width="7.5" height="7.5" />
+            </svg>
+            <span class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-[-0.03em] text-[#162B31]">
+              RASTER<span class="text-[#E9631A]">.</span>
+            </span>
+          </div>
+          <p class="text-sm sm:text-base text-[#315762] max-w-lg leading-relaxed">
+            Specialty coffee roastery rooted in Tlogomas, Malang. Sourced directly from Indonesian highland farmers, roasted fresh weekly, and poured with honest craft.
+          </p>
+        </div>
+
+        <!-- Quick Action / Status Badge with Consistent Shutter Wipe -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 shrink-0">
+          <a 
+            href="index.html#roast-spec" 
+            class="relative inline-flex items-center justify-center gap-2 bg-[#E9631A] text-white text-xs font-bold px-5 py-3 rounded-none overflow-hidden group active:scale-[0.98] transition-transform"
+          >
+            <!-- Background Shutter Wipe (Deep Charcoal #162B31 from Bottom) -->
+            <span class="absolute inset-0 bg-[#162B31] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"></span>
+            <span class="relative z-10 inline-flex items-center gap-2">
+              <span>Explore Coffee Beans</span>
+              <i class="ph ph-arrow-right text-sm transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1"></i>
+            </span>
+          </a>
+          <a 
+            href="index.html#visit" 
+            class="relative inline-flex items-center justify-center gap-2 bg-white text-[#162B31] text-xs font-semibold px-5 py-3 rounded-none border border-[#315762]/25 overflow-hidden group active:scale-[0.98] transition-transform"
+          >
+            <!-- Background Shutter Wipe (Signature Orange #E9631A from Bottom) -->
+            <span class="absolute inset-0 bg-[#E9631A] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none"></span>
+            <span class="relative z-10 inline-flex items-center gap-2 transition-colors duration-300 group-hover:text-white">
+              <span>Visit Bar</span>
+              <i class="ph ph-map-pin text-sm text-[#E9631A] group-hover:text-white transition-colors duration-300"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4-Column Swiss Grid (Matching Page Master Tracks) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 py-12 border-b border-[#315762]/20 text-xs">
+      
+      <!-- Track 01: Directory -->
+      <div>
+        <span class="font-bold text-[#E9631A] block mb-4">
+          Directory
+        </span>
+        <ul class="space-y-2.5 text-[#315762]">
+          <li>
+            <a href="index.html#about" class="swiss-link">Our Malang Story</a>
+          </li>
+          <li>
+            <a href="index.html#roast-spec" class="swiss-link">Coffee Beans Catalog</a>
+          </li>
+          <li>
+            <a href="index.html#menu" class="swiss-link">Coffee & Drinks Menu</a>
+          </li>
+          <li>
+            <a href="index.html#gallery" class="swiss-link">Space & Atmosphere</a>
+          </li>
+          <li>
+            <a href="index.html#visit" class="swiss-link">Location & Full Map</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Track 02: Coffee & Roastery -->
+      <div>
+        <span class="font-bold text-[#E9631A] block mb-4">
+          Current Roasts
+        </span>
+        <ul class="space-y-2.5 text-[#315762]">
+          <li>
+            <a href="index.html#roast-spec" class="swiss-link">Dampit Highlands (East Java)</a>
+          </li>
+          <li>
+            <a href="index.html#roast-spec" class="swiss-link">Arjuno Honey (Mount Arjuno)</a>
+          </li>
+          <li>
+            <a href="index.html#roast-spec" class="swiss-link">Gayo Pantan Musara (Aceh)</a>
+          </li>
+          <li>
+            <a href="index.html#roast-spec" class="swiss-link">Toraja Sapan (Sulawesi)</a>
+          </li>
+          <li>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="swiss-link font-medium">Wholesale & Beans Supply &rarr;</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Track 03: Flagship Bar -->
+      <div>
+        <span class="font-bold text-[#E9631A] block mb-4">
+          Flagship Bar
+        </span>
+        <div class="space-y-2 text-[#315762] leading-relaxed">
+          <p class="text-[#162B31] font-bold">
+            Jl. Raya Tlogomas No. 42
+          </p>
+          <p>
+            Lowokwaru, Kota Malang<br>
+            Jawa Timur 65144, Indonesia
+          </p>
+          <div class="pt-2 text-[#315762] space-y-1">
+            <p><span class="text-[#162B31] font-semibold">Mon – Fri:</span> 07:30 – 21:30 WIB</p>
+            <p><span class="text-[#162B31] font-semibold">Sat – Sun:</span> 07:00 – 22:00 WIB</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Track 04: Connect & Socials -->
+      <div>
+        <span class="font-bold text-[#E9631A] block mb-4">
+          Connect
+        </span>
+        <ul class="space-y-2.5 text-[#315762]">
+          <li>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="swiss-link inline-flex items-center gap-2">
+              <i class="ph ph-instagram-logo text-sm text-[#E9631A]"></i>
+              <span>@raster.kaffee</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="swiss-link inline-flex items-center gap-2">
+              <i class="ph ph-whatsapp-logo text-sm text-[#25D366]"></i>
+              <span>+62 812 3456 7890</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:hello@rastercoffee.com" class="swiss-link inline-flex items-center gap-2">
+              <i class="ph ph-envelope-simple text-sm text-[#E9631A]"></i>
+              <span>hello@rastercoffee.com</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://maps.google.com/?q=Jl.+Raya+Tlogomas+No.+42,+Lowokwaru,+Malang" target="_blank" rel="noopener noreferrer" class="swiss-link inline-flex items-center gap-2">
+              <i class="ph ph-map-pin text-sm text-[#E9631A]"></i>
+              <span>Directions on Maps</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Row: Meta, Copyright & Back to Top -->
+    <div class="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-[#315762]/70 gap-4">
+      
+      <div class="flex flex-wrap items-center gap-3">
+        <span>&copy; 2026 Raster Kaffee & Lab. All rights reserved.</span>
+        <span>·</span>
+        <span>Tlogomas, Malang, East Java</span>
+      </div>
+
+      <a 
+        href="#" 
+        class="swiss-link inline-flex items-center gap-1.5 font-semibold group"
+      >
+        <span>Back to top</span>
+        <i class="ph ph-arrow-up group-hover:-translate-y-0.5 transition-transform text-sm text-[#E9631A]"></i>
+      </a>
+
+    </div>
+
+  </div>
+</footer>
+
+
+  </div>
+
+  <!-- Interactive Data & Switcher Script -->
+  <script>
+    const BEANS_DATA = {
+      dampit: {
+        id: 'dampit',
+        title: 'Dampit Highlands',
+        region: 'Semeru Highlands, Malang',
+        price: 'IDR 135,000',
+        img: './images/bean-1-dampit.jpg',
+        notes: 'Dark Chocolate, Candied Orange, Brown Sugar',
+        desc: 'Cultivated on the mineral-dense southern slopes of Mount Semeru in Dampit, Malang. Full washed and small-batch roasted for exceptional sweetness, deep chocolate body, and a clean finish.',
+        process: 'Full Washed',
+        altitude: '1,100 – 1,350 masl',
+        roast: 'Medium Roast',
+        shopeeUrl: 'https://shopee.co.id/raster.coffee?product=dampit',
+        waMessage: 'Halo Raster Roastery, saya mau order roasted beans Dampit Highlands 250g.'
+      },
+      arjuno: {
+        id: 'arjuno',
+        title: 'Arjuno Honey',
+        region: 'Mount Arjuno, Malang',
+        price: 'IDR 145,000',
+        img: './images/bean-2-arjuno.jpg',
+        notes: 'Wild Strawberry, Raw Honey, Bergamot',
+        desc: 'Grown in high-altitude micro-farms on the ridge of Mount Arjuno. Yellow honey processed to infuse sweet fruity nuances, delicate berry undertones, and a silky mouthfeel.',
+        process: 'Yellow Honey',
+        altitude: '1,300 – 1,550 masl',
+        roast: 'Light-Medium Roast',
+        shopeeUrl: 'https://shopee.co.id/raster.coffee?product=arjuno',
+        waMessage: 'Halo Raster Roastery, saya mau order roasted beans Arjuno Honey 250g.'
+      },
+      gayo: {
+        id: 'gayo',
+        title: 'Gayo Pantan Musara',
+        region: 'Pegasing, Central Aceh',
+        price: 'IDR 145,000',
+        img: './images/bean-3-gayo.jpg',
+        notes: 'Crisp Green Apple, Lemongrass, Caramel',
+        desc: 'Sourced from the Pegasing highlands in Pantan Musara, Aceh. Anaerobic natural fermentation highlighting vibrant orchard-fruit acidity, bright floral aroma, and clean sweetness.',
+        process: 'Anaerobic Natural',
+        altitude: '1,500 – 1,700 masl',
+        roast: 'Light Roast (Filter)',
+        shopeeUrl: 'https://shopee.co.id/raster.coffee?product=gayo',
+        waMessage: 'Halo Raster Roastery, saya mau order roasted beans Gayo Pantan Musara 250g.'
+      },
+      toraja: {
+        id: 'toraja',
+        title: 'Toraja Sapan',
+        region: 'Minanga, North Toraja',
+        price: 'IDR 140,000',
+        img: './images/bean-4-toraja.jpg',
+        notes: 'Dark Cocoa, Sweet Orange, Cedar Wood',
+        desc: 'Harvested from the misty ridges of Sapan Minanga, North Toraja. Celebrated for rich complexity, aromatic cedar warmth, and a syrupy mouthfeel perfected through precision roasting.',
+        process: 'Semi-Washed',
+        altitude: '1,600 – 1,900 masl',
+        roast: 'Medium-Dark Roast',
+        shopeeUrl: 'https://shopee.co.id/raster.coffee?product=toraja',
+        waMessage: 'Halo Raster Roastery, saya mau order roasted beans Toraja Sapan 250g.'
+      }
+    };
+
+    function renderBean(beanId) {
+      const data = BEANS_DATA[beanId] || BEANS_DATA.dampit;
+
+      document.title = 'RASTER · ' + data.title + ' | Coffee Details';
+      
+      const elRegion = document.getElementById('detail-region');
+      const elTitle = document.getElementById('detail-title');
+      const elImg = document.getElementById('detail-img');
+      const elPrice = document.getElementById('detail-price');
+      const elNotes = document.getElementById('detail-notes');
+      const elDesc = document.getElementById('detail-desc');
+      const elProcess = document.getElementById('detail-process');
+      const elAltitude = document.getElementById('detail-altitude');
+      const elRoast = document.getElementById('detail-roast');
+      const elShopee = document.getElementById('detail-shopee-link');
+      const elWa = document.getElementById('detail-wa-link');
+
+      if (elRegion) elRegion.textContent = data.region;
+      if (elTitle) elTitle.innerHTML = data.title + '<span class="text-[#E9631A]">.</span>';
+      if (elImg) {
+        elImg.src = data.img;
+        elImg.alt = data.title + ' roasted coffee pouch';
+      }
+      if (elPrice) elPrice.textContent = data.price;
+      if (elNotes) elNotes.textContent = data.notes;
+      if (elDesc) elDesc.textContent = data.desc;
+      if (elProcess) elProcess.textContent = data.process;
+      if (elAltitude) elAltitude.textContent = data.altitude;
+      if (elRoast) elRoast.textContent = data.roast;
+
+      if (elShopee) elShopee.href = data.shopeeUrl;
+      if (elWa) elWa.href = 'https://wa.me/6281234567890?text=' + encodeURIComponent(data.waMessage);
+
+      // Render other 3 beans at bottom with visual packshot cards
+      const otherGrid = document.getElementById('other-beans-grid');
+      if (otherGrid) {
+        const otherKeys = Object.keys(BEANS_DATA).filter(k => k !== data.id);
+        otherGrid.innerHTML = otherKeys.map(k => {
+          const item = BEANS_DATA[k];
+          return '<a href="bean-detail.html?id=' + item.id + '" class="other-bean-card group bg-white p-3 sm:p-3.5 border border-[#315762]/20 hover:border-[#E9631A] transition-all flex items-center gap-3.5 cursor-pointer block" data-switch-id="' + item.id + '">' +
+            '<div class="w-16 h-16 sm:w-20 sm:h-20 bg-white border border-[#315762]/10 shrink-0 p-1 flex items-center justify-center overflow-hidden">' +
+              '<img src="' + item.img + '" alt="' + item.title + '" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 will-change-transform" />' +
+            '</div>' +
+            '<div class="flex-1 min-w-0 space-y-0.5">' +
+              '<span class="text-[10px] font-bold text-[#E9631A] block truncate">' + item.region + '</span>' +
+              '<h3 class="text-xs sm:text-sm font-bold text-[#162B31] group-hover:text-[#E9631A] transition-colors truncate">' + item.title + '</h3>' +
+              '<p class="text-[11px] text-[#315762] truncate">' + item.notes + '</p>' +
+              '<span class="text-[11px] font-bold text-[#162B31] block pt-0.5">' + item.price + '</span>' +
+            '</div>' +
+            '<i class="ph ph-arrow-right text-xs text-[#315762] group-hover:text-[#E9631A] group-hover:translate-x-1 transition-all shrink-0"></i>' +
+          '</a>';
+        }).join('');
+
+        otherGrid.querySelectorAll('[data-switch-id]').forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('data-switch-id');
+            history.pushState({ id: targetId }, '', 'bean-detail.html?id=' + targetId);
+            renderBean(targetId);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Lenis smooth scroll
+      if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: 'vertical',
+          gestureOrientation: 'vertical',
+          smoothWheel: true
+        });
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+      }
+
+      // 3. Initial read from URL query param
+      const urlParams = new URLSearchParams(window.location.search);
+      const initialId = urlParams.get('id') || 'dampit';
+      renderBean(initialId);
+
+      // 4. Handle browser back/forward buttons
+      window.addEventListener('popstate', (e) => {
+        const params = new URLSearchParams(window.location.search);
+        const currentId = params.get('id') || 'dampit';
+        renderBean(currentId);
+      });
+    });
+  </script>
+</body>
+</html>
